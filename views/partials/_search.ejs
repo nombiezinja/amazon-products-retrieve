@@ -1,0 +1,59 @@
+    <div class="col-md-6 col-md-offset-1 well pull-left">
+      <form method="POST" action="/" class="search-form form-horizontal">
+        <div class="col-sm-12">
+        <h2>Look for products  to add to shopping list</h2>
+        </div>
+        <div class="form-group col-sm-12">
+          <label class="col-sm-12" for="keyword">What would you like to search for?</label>
+          <div class="col-sm-12">
+            <input class="form-control" type="text" name="keyword" placeholder="Enter search keywords">
+          </div>
+        </div>
+        <div class="form-group col-sm-12">
+          <div class="col-sm-12">
+            <label>What price range would you like to search within?</label>
+          </div>
+          <div class="col-sm-6">
+            <input class="form-control" type="text" name="MinimumPrice" placeholder="Enter a minimum price">
+          </div>
+          <div class="col-sm-6">
+            <input class="form-control" type="text" name="MaximumPrice" placeholder="Enter a maximum price">
+          </div>
+        </div>
+        <div class ="form-group col-sm-12">
+          <div class="col-sm-6">
+          <label for="searchIndex">What category do you want to search in?</label>
+          </div>
+          <div class="col-sm-6">
+          <select name="searchIndex" class="form-control">
+            <option value="All">All Departments</option>
+            <option value="ArtsAndCrafts">Arts, Crafts and Sewing</option>
+            <option value="Books">Books</option>
+            <option value="Collectibles">Collectibles</option>
+            <option value="Electronics">Electronics</option>
+            <option value="Toys">Toys and Games</option>
+            <option value="VideoGames">Video Games</option>
+          </select>
+          </div>
+        </div>
+        <div class ="form-group col-sm-12">
+          <div class="col-sm-6">
+          <label for="sort">How would you like your results sorted?</label>
+          </div>
+          <div class="col-sm-6">
+          <select name="sort" class="form-control">
+            <option value="price">Price: low to high</option>
+            <option value="-price">Price: high to low</option>
+            <option value="salesrank">Availability</option>
+            <option value="pmrank">Featured</option>
+            <option value="relevancerank">Relevance</option>
+            <option value="reviewrank">Reviews rating: high to low</option>
+            <option value="VideoGames">Video Games</option>
+          </select>
+          </div>
+        </div>
+      <div class="col-md-4 offset-md-4">
+        <button type="submit" class="submit-btn btn btn-block btn-outline-info">Submit</button>
+      </div>
+    </form>
+    </div>
