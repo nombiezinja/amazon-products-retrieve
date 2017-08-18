@@ -59,6 +59,7 @@ app.post('/', (req,res) => {
     MinimumPrice: req.body.MinimumPrice * 100,
     ResponseGroup: 'Large,VariationSummary',
   }).then((results) => {
+    console.log(results)
     const uri = uuid()
     dbhelper.newList(uri)
       .then(() => {
@@ -71,7 +72,6 @@ app.post('/', (req,res) => {
 
 app.get('/:id', (req, res) => {
   req.session.uri = req.params.id;
-  console.log(req.session)
   res.render('shoppinglist', {
     uri: req.params.id
   })
@@ -83,9 +83,8 @@ io.on('connection', function (socket) {
   console.log("a user joined: " + userCount + " users");
   const id = socket.handshake.session.uri;
   socket.join("room"+id)
-  socket.on('submit', (data)=>{
-    console.log(data)
-  });
+  // let incomingProducts=['hello','bleh']
+  // io.in("room-"+id).emit("incomingProducts");
 
   socket.on("disconnect", (e)=>{
     userCount --;
