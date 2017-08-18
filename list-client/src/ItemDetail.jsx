@@ -10,7 +10,13 @@ class ItemDetail extends Component {
   }
 
   render(){
-    <h1>Detail</h1>
+    return(
+    <div>
+      <h3>Detail</h3>
+      <img src={this.props.imgUrl} />
+      <a href={this.props.url}>Go to Product Page </a>
+    </div>
+    )
   }
 }
 

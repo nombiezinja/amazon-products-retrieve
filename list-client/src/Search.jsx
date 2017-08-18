@@ -38,7 +38,6 @@ class Search extends Component {
     this.props.onSubmit(this.state)
   }
 
-
   componentDidMount() {
   }
 
@@ -47,7 +46,6 @@ class Search extends Component {
 
   render(){
     return (
-      <div className="container col-md-10 col-md-offset-1">
       <div className="col-md-6 col-md-offset-1 well pull-left">
         <form className="search-form form-horizontal">
           <div className="col-sm-12">
@@ -125,7 +123,6 @@ class Search extends Component {
             onClick={this.handleSubmit}>Submit</button>
         </div>
       </form>
-      </div>
       </div>
     );
   }

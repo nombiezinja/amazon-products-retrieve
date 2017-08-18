@@ -15,7 +15,7 @@ class App extends React.Component {
       MinumumPrice: Number.NEGATIVE_INFINITY,
       SearchIndex:'',
       Sort:'',
-      products:['product1','product2'],
+      products:[]
     }
   }
 
@@ -23,51 +23,54 @@ class App extends React.Component {
     this.socket.emit("products", {products: products})
   }
 
-  componentDidMount() {
-    this.socket = io();
-    this.socket.on('incomingProducts',(event)=>{
-      console.log(event, 'is event')
-      const newProducts = this.state.products.concat(e);
-      this.setState({
-        products: newProducts
-      });
+  onSubmit = (input) => {
+    return axios.post(`/api/search/${window.uri}`, {
+      input
     });
   }
 
-  onSubmit = (input) => {
+  getSearchResults = (uri) => {
+    return axios.get(`/api/search/${window.uri}`)
+  }
 
-    // const submitQuery = (input) => {
-      return axios.post(`/api/search/${window.uri}`, {
-        input
-    //   })
-    // }
 
-    const getQuery = () => {
-      return axios.get(`/api/search/${window.uri}`)
-    }
+  displayNewProducts = (products) => {
+    this.socket.emit("products", {products:products})
+  }
 
-    // return axios.all([submitQuery(input),getQuery()])
-    //   .then(axios.spread((submitResponse,getResponse) => {
-    //     console.log(getResponse)
-    //     console.log('log something out ffs')
-    //     this.setState({products: getResponse})
-    //   }))
+  componentDidMount() {
 
+    this.socket = io();
+
+    this.getSearchResults(window.uri).then((results) => {
+      console.log(results.data[0].ASIN[0])
+      this.setState({
+        products: results.data
+      }, () => {
+        console.log(this.state.products, 'here')
+      })
+    })
+  }
+
+  componentWillMount(){
 
   }
 
 
   render() {
     return (
-     <div>
-       <p>{this.state.products}</p>
-       <Search Keywords={this.state.Keywords}
-         MaximumPrice={this.state.MaximumPrice}
-         MinimumPrice={this.state.MinimumPrice}
-         SearchIndex={this.state.SearchIndex}
-         Sort={this.state.sort}
-         onSubmit={this.onSubmit.bind(this)}
-         />
+     <div className="container col-md-10 col-md-offset-1">
+
+        <Search Keywords={this.state.Keywords}
+          MaximumPrice={this.state.MaximumPrice}
+          MinimumPrice={this.state.MinimumPrice}
+          SearchIndex={this.state.SearchIndex}
+          Sort={this.state.sort}
+          onSubmit={this.onSubmit.bind(this)}
+          />
+        <ItemList products={this.state.products}
+          broadcastProducts={this.broadcastProducts.bind(this)}
+          />
      </div>
     );
   }

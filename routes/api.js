@@ -32,10 +32,10 @@ module.exports = (dbhelper) => {
           SearchIndex: params.SearchIndex,
           MaximumPrice: params.MaximumPrice * 100,
           MinimumPrice: params.MinimumPrice * 100,
-          ResponseGroup: 'Large,VariationSummary',
+          ResponseGroup: 'Medium,VariationSummary',
         }).then((results) => {
           console.log(results)
-          res.send('results')
+          res.send(results)
         }).catch((err) => {
           console.log(err);
         });
